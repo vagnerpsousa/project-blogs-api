@@ -10,7 +10,9 @@ const notFound = 404;
 
 router.post('/', validatePost, validateCategorie, validateToken, async (req, res, _next) => {
   const { title, content, categoryIds } = req.body;
+
   const { id } = req;
+  
   const newPost = await postService.create(title, content, categoryIds, id);
 
   res.status(statusSucessCreate).json(newPost);
